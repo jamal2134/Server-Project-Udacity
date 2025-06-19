@@ -435,6 +435,25 @@ kubectl get services simple-jwt-api -o wide
 export TOKEN=`curl -d '{"email":"<EMAIL>","password":"<PASSWORD>"}' -H "Content-Type: application/json" -X POST <EXTERNAL-IP URL>/auth  | jq -r '.token'`
 curl --request GET '<EXTERNAL-IP URL>/contents' -H "Authorization: Bearer ${TOKEN}" | jq 
 ```
- 
+
+my Link is 
+
+```
+ http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.elb.amazonaws.com
+```
+
+```bash
+kubectl get services simple-jwt-api -o wide
+export TOKEN=`curl -d '{"email":"<EMAIL>","password":"<PASSWORD>"}' -H "Content-Type: application/json" -X POST http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.elb.amazonaws.com/auth  | jq -r '.token'`
+curl --request GET 'http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.elb.amazonaws.com/contents' -H "Authorization: Bearer ${TOKEN}" | jq 
+```
+
+for run in windows 
+
+```bash
+kubectl get services simple-jwt-api -o wide
+FOR /F "usebackq delims=" %i IN (`curl -d "{\"email\":\"abc@xyz.com\",\"password\":\"mypwd\"}" -H "Content-Type: application/json" -X POST http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.elb.amazonaws.com//auth ^| jq -r ".token"`) DO SET TOKEN=%i
+curl --request GET http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.elb.amazonaws.com/contents -H "Authorization: Bearer %TOKEN%" | jq 
+```
 
 
