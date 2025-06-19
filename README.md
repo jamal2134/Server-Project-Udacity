@@ -457,3 +457,7 @@ curl --request GET http://a951707693d5d445cac5da0e2cb19f1f-916477895.us-east-2.e
 ```
 
 
+# Img of test the EXTERNAL-IP URL
+
+![img1](img/img1.png)
+
